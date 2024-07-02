@@ -1,0 +1,24 @@
+version: "3.7"
+name: tc-gateway
+
+networks:
+  tc-gateway:
+    driver: bridge
+
+services:
+  basyx-aas-server:
+    image: eclipsebasyx/aas-server:1.5.1
+    container_name: basyx-aas-server
+    ports:
+      - "8081:4001"
+    volumes:
+      - ./src/basyx-conf:/usr/share/config
+
+  nginx:
+    image: nginx
+    volumes:
+      - ./src/nginx-conf:/etc/nginx/templates
+    ports:
+      - "8080:80"
+    environment:
+      - NGINX_PORT=80
