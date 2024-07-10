@@ -10,15 +10,16 @@ services:
     image: eclipsebasyx/aas-server:1.5.1
     container_name: basyx-aas-server
     ports:
-      - "8081:4001"
+      - "8091:4001"
     volumes:
       - ./src/basyx-conf:/usr/share/config
+      - ./src/basyx-source:/usr/share/config/aas
 
   nginx:
     image: nginx
     volumes:
       - ./src/nginx-conf:/etc/nginx/templates
     ports:
-      - "8080:80"
+      - "8090:80"
     environment:
       - NGINX_PORT=80
