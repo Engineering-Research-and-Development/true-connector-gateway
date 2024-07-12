@@ -11,9 +11,21 @@ services:
     container_name: basyx-aas-server
     ports:
       - "8091:4001"
+    expose:
+      - 8091
     volumes:
-      - ./src/basyx-conf:/usr/share/config
+      - ./src/basyx-conf/server:/usr/share/config
       - ./src/basyx-source:/usr/share/config/aas
+
+  basyx-aas-registry:
+    image: eclipsebasyx/aas-registry:1.5.1
+    container_name: basyx-aas-registry
+    ports:
+      - "8092:4000"
+    expose:
+      - 8092
+    volumes:
+      - ./src/basyx-conf/registry:/usr/share/config
 
   nginx:
     image: nginx
