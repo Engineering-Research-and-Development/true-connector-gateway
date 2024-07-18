@@ -7,39 +7,29 @@ networks:
 
 services:
 
-    registry:
+  registry:
     container_name: aas-registry
     image: eclipsebasyx/aas-registry:1.5.1
     ports:
-        - 4000:4000
-    environment:
-        - basyxregistry_registry_backend=InMemory
-        - basyxcontext_contextpath=/registry
-        - basyxcontext_contextport=4000
-        - basyxcontext_accesscontrolalloworigin=*
+        - "4000:4000"
+    volumes:
+      - ./src/basyx-conf/registry:/usr/share/config
 
   aas:
     image: eclipsebasyx/aas-server:1.5.1
     container_name: aas-server
     ports:
-        - 4001:4001
-    environment:
-        - basyxaas_registry_path=http://registry:4000/registry/
-        - basyxaas_aas_backend=InMemory
-        - basyxcontext_contextpath=/aasServer
-        - basyxcontext_contextport=4001
-        - basyxaas_aas_source=aasx/Example_AAS_ServoDCMotor_21.aasx
-        - waiting_for=[{"host":"registry","port":"4000"}]
-        - basyxcontext_accesscontrolalloworigin=*
+        - "4001:4001"
     volumes:
-        - ./src/basyx-source/:/aasx
+      - ./src/basyx-conf/server:/usr/share/config
+      - ./src/basyx-source:/usr/share/config/aas
 
 
   gui: 
     image: eclipsebasyx/aas-gui:v230703
     container_name: aas-Gui
     ports:
-        - 3000:3000
+        - "3000:3000"
     environment:
         -  VITE_REGISTRY_PATH="http://localhost:4000/registry"
 
