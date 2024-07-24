@@ -42,7 +42,7 @@ services:
   nginx:
     image: nginx
     volumes:
-      - ./src/nginx-conf:/etc/nginx/sites-available/tc-gateway
+      - ./src/nginx-conf/aasServer.conf:/etc/nginx/conf.d/aasServer.conf
     ports:
       - "8090:80"
     environment:
