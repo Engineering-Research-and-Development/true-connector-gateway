@@ -14,6 +14,8 @@ services:
         - "4000:4000"
     volumes:
       - ./src/basyx-conf/registry:/usr/share/config
+    networks:
+      - tc-gateway
 
   aas:
     image: eclipsebasyx/aas-server:1.5.1
@@ -23,6 +25,8 @@ services:
     volumes:
       - ./src/basyx-conf/server:/usr/share/config
       - ./src/basyx-source:/usr/share/config/aas
+    networks:
+      - tc-gateway
 
 
   gui: 
@@ -32,12 +36,16 @@ services:
         - "3000:3000"
     environment:
         -  VITE_REGISTRY_PATH="http://localhost:4000/registry"
+    networks:
+      - tc-gateway
 
   nginx:
     image: nginx
     volumes:
-      - ./src/nginx-conf:/etc/nginx/templates
+      - ./src/nginx-conf:/etc/nginx/sites-available/tc-gateway
     ports:
       - "8090:80"
     environment:
       - NGINX_PORT=80
+    networks:
+      - tc-gateway
