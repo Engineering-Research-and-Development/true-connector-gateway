@@ -41,6 +41,7 @@ services:
 
   nginx:
     image: nginx
+    container_name: aas-nginx
     volumes:
       - ./src/nginx-conf/aasServer.conf:/etc/nginx/conf.d/aasServer.conf
     ports:
