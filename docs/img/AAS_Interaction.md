@@ -21,3 +21,12 @@ There are two main BaSyx components that serves to browse an AAS through the [Ba
 - Call for the AAS server again, browsing the specific asset and interact:
   - GET http://localhost:4001/aasServer/shells/http%3A%2F%2Fcustomer.com%2Faas%2F9175_7013_7091_9168/aas/submodels/OperationalData/submodel
   - GET http://localhost:4001/aasServer/shells/http%3A%2F%2Fcustomer.com%2Faas%2F9175_7013_7091_9168/aas/
+ 
+- In the end, access single submodelElements list, elements, or values using the IdShort of Submodel Elements:
+  - GET http://localhost:4001/aasServer/shells/http%3A%2F%2Fcustomer.com%2Faas%2F9175_7013_7091_9168/aas/submodels/OperationalData/submodel/submodelElements/
+  - GET http://localhost:4001/aasServer/shells/http%3A%2F%2Fcustomer.com%2Faas%2F9175_7013_7091_9168/aas/submodels/OperationalData/submodel/submodelElements/RotationSpeed
+  - GET http://localhost:4001/aasServer/shells/http%3A%2F%2Fcustomer.com%2Faas%2F9175_7013_7091_9168/aas/submodels/OperationalData/submodel/submodelElements/RotationSpeed/value
+- Or modify values
+  - PUT http://localhost:4001/aasServer/shells/http%3A%2F%2Fcustomer.com%2Faas%2F9175_7013_7091_9168/aas/submodels/OperationalData/submodel/submodelElements/RotationSpeed/value
+    ![image](https://github.com/user-attachments/assets/d97def77-9149-4991-9c1b-25d1c8b2fd40)
+
