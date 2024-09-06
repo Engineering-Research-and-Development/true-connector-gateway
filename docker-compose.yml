@@ -38,6 +38,27 @@ services:
     networks:
       - tc-gateway
 
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: basyx_db
+    networks:
+      - tc-gateway
+
+  mongo:
+    image: mongo:latest
+    container_name: mongoDb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: aasRegistry
+    networks:
+      - tc-gateway
+
   nginx:
     image: nginx
     container_name: aas-nginx
