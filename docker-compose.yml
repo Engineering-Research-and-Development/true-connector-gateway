@@ -5,6 +5,18 @@ networks:
     driver: bridge
 
 services:
+  aasx-server:
+    container_name: aasx-server
+    image: docker.io/adminshellio/aasx-server-blazor-for-demo:main
+    ports:
+      - "5001:5001"
+    environment:
+      - Kestrel__Endpoints__Http__Url=http://*:5001
+    volumes:
+      - ./src/aas-sources:/usr/share/aasxs
+    command: --no-security --data-path /usr/share/aasxs
+    networks:
+      - tc-gateway
 
   registry:
     image: eclipsebasyx/aas-registry:1.5.1
@@ -25,7 +37,7 @@ services:
         - "4001:4001"
     volumes:
       - ./src/basyx-conf/server:/usr/share/config
-      - ./src/basyx-source:/usr/share/config/aas
+      - ./src/aas-sources:/usr/share/config/aas
     networks:
       - tc-gateway
     depends_on:
