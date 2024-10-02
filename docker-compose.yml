@@ -13,8 +13,8 @@ services:
     environment:
       - Kestrel__Endpoints__Http__Url=http://*:5001
     volumes:
-      - ./src/aas-sources:/usr/share/aasxs
-    command: --no-security --data-path /usr/share/aasxs
+      - ./src/aas-sources:/AasxServerBlazor/aasxs
+    command: --no-security
     networks:
       - tc-gateway
 
