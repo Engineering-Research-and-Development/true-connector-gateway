@@ -24,7 +24,7 @@ http://localhost:5001
           }
         ]
       }
-  ]
+    ]
   }
   ```
 - Encode in base64 the value. In the example you will get: 
